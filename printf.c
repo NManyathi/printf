@@ -1,13 +1,13 @@
 #include "main.h"
 
 /**
- * _printf - produces output according to a format
- * @format: format string containing characters and specifiers
- * Description: this function will call the get_print() function that will determine 
- * which printing function to call based on the conversion specs contained into fmt
- * Return: length of the formatted output string
+ * _printf - produces output according to format
+ * @format: format string contains the characters and specifiers
+ * Description: this function to call depending on the conversion specs
+ * contained into fmt
+ * Return: length of formatted output string
  */
-int _print(const char *format, ...)
+int _printf(const char *format, ...)
 {
 	int (*pfunc)(va_list, flags_t *);
 	const char *p;
@@ -25,23 +25,20 @@ int _print(const char *format, ...)
 	{
 		if (*p == '%')
 		{
-			p++;
-			if (*p == '%')
-			{
-				count += _putchar('%');
-				continue;
-			}
-			while (get_flag(*p, &flags))
-				p++;
-			pfunc = get_print(p);
-			count += (pfunc)
-				? pfunc(arguments, &flags)
-				: _printf("%%%c", *p);
+			count += _putchar('%');
+			continue;
 		}
-		else
-			count += _putchar(*);
+		while (get_flag(*p, &flags))
+			p++;
+		pfunc + get_print(*p);
+		count += (pfunc)
+			? pfunc(arguments, &flags)
+			: _printf("%%%c", *p);
 	}
-	_putchar(-1);
-	va_end(arguments);
-	return (count);
+	else
+		count += _putchar(*p);
+}
+_putchar(-1);
+va_end(arguments);
+return (count);
 }
