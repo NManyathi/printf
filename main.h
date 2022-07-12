@@ -30,6 +30,12 @@ typedef struct printHandler
     int (*f)(va_list ap, flags_t *f);
 } ph;
 
+int print_decimal(int value);
+long long int power(int base, int x);
+long long convertToDecimal(int Number, int base);
+int print_int(va_list i);
+int print_dec(va_list d);
+
 /* print_nums */
 int print_int(va_list l, flags_t *f);
 void print_number(int n);
