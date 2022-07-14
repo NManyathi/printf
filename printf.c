@@ -2,10 +2,11 @@
 
 /**
  * _printf - produces output according to format
- * @format: format string contains the characters and specifiers
- * Description: this function to call depending on the conversion specs
- * contained into fmt
- * Return: length of formatted output string
+ * @format: format string contains the characters and specs
+ * Description:  this function calls get_print() function
+ * that determines which printing
+ * function to call based on the conversion specs contained into fmt
+ * Return: length of the formatted output strin
  */
 int _printf(const char *format, ...)
 {
@@ -25,20 +26,23 @@ int _printf(const char *format, ...)
 	{
 		if (*p == '%')
 		{
-			count += _putchar('%');
-			continue;
-		}
-		while (get_flag(*p, &flags))
 			p++;
-		pfunc + get_print(*p);
-		count += (pfunc)
-			? pfunc(arguments, &flags)
-			: _printf("%%%c", *p);
+			if (*p == '%')
+			{
+				count += _putchar('%');
+				continue;
+			}
+			while (get_flag(*p, &flags))
+				p++;
+			pfunc = get_print(*p);
+			count += (pfunc)
+				? pfunc(arguments, &flags)
+				: _printf("%%%c", *p);
+		}
+		else
+			count += _putchar(*p);
 	}
-	else
-		count += _putchar(*p);
-}
-_putchar(-1);
-va_end(arguments);
-return (count);
+	_putchar(-1);
+	va_end(arguments);
+	return (count);
 }

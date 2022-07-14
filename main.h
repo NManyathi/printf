@@ -3,7 +3,6 @@
 
 #include <stdlib.h>
 #include <stdarg.h>
-
 /**
  * struct flags - struct containing flags to "turn on"
  * when a flag specifier is passed to _printf()
@@ -13,9 +12,9 @@
  */
 typedef struct flags
 {
-    int plus;
-    int space;
-    int hash;
+       	int plus;
+	int space;
+	int hash;
 } flags_t;
 
 /**
@@ -23,18 +22,13 @@ typedef struct flags
  * on the format specifier passed to _printf()
  * @c: format specifier
  * @f: pointer to the correct printing function
+ *
  */
 typedef struct printHandler
 {
-    char c;
-    int (*f)(va_list ap, flags_t *f);
+	    char c;
+	        int (*f)(va_list ap, flags_t *f);
 } ph;
-
-int print_decimal(int value);
-long long int power(int base, int x);
-long long convertToDecimal(int Number, int base);
-int print_int(va_list i);
-int print_dec(va_list d);
 
 /* print_nums */
 int print_int(va_list l, flags_t *f);
@@ -49,7 +43,7 @@ int print_binary(va_list l, flags_t *f);
 int print_octal(va_list l, flags_t *f);
 
 /* converter */
-char *convert(char representation[],unsigned long int num, int base, int lowercase);
+char *convert(unsigned long int num, int base, int lowercase);
 
 /* _printf */
 int _printf(const char *format, ...);
@@ -78,6 +72,5 @@ int print_address(va_list l, flags_t *f);
 
 /* print_percent */
 int print_percent(va_list l, flags_t *f);
-
 
 #endif
